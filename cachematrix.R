@@ -57,6 +57,10 @@ makeCacheMatrix <- function(x = matrix()) {
   }
   
   # set the inverted matrix to cache
+  # chose to run solve in setinverted from in the call below
+  # it make for a more cleaner and understandable 1 call solution in cachesolve function
+  # and give exteneded functionality to this function
+  
   setinverted <- function(solvedi, ...) {
     invx <<- solve(solvedi, ...) # cache it !
     return(invx) # return inverted matrix
@@ -94,6 +98,9 @@ cacheSolve <- function(x, ...) {
   } else {
     # if we didn't get a cache hit   
     # place the inverse of the matrix in cache and retreive it
+    # chose to run solve in setinverted from the call below
+    # it make for a more cleaner and understandable 1 call solution
+    # and give exteneded functionality to makecache
     inverted <- x$setinverted(x$get(), ...)
     return(inverted)
   }
